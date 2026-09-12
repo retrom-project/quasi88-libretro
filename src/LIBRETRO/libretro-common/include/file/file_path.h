@@ -133,7 +133,12 @@ const char *path_basename(const char *path);
  * Extracts base directory by mutating path.
  * Keeps trailing '/'.
  **/
+#ifdef __EMSCRIPTEN__
+/* The pinned static RetroArch frontend supplies the current libretro-common ABI. */
+size_t path_basedir(char *path);
+#else
 void path_basedir(char *path);
+#endif
 
 /**
  * path_parent_dir:
